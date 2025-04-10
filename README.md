@@ -72,6 +72,6 @@ Ensure the key.key file is present in the same directory before running the decr
 
 - Practicing threat detection and incident response in a lab environment.
 
-## Author
+## Authors
 
-Uchendu, Favour Eni & 
+Uchendu, Favour Eni & Oladimeji, Richard
