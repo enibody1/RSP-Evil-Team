@@ -24,15 +24,45 @@ This project is for educational purposes only. Do NOT use it on any system witho
 
 - ```cryptography``` library
 
+## Project Structure
+
+RSP-Evil-Team/
+
+│
+
+├── encryptor.py              # Main script to encrypt files and write ransom notes
+
+├── decryptor.py              # Main script to decrypt files and restore original filenames
+
+├── ransomware_gui.py         # GUI for the ransomware attack (e.g., countdown, warnings)
+
+├── decryption_gui.py         # GUI for showing decryption success and displaying decrypted files
+
+├── persistence.py            # Persistence setup for simulating autostart on system boot
+
+├── decryption_log.txt        # Log of decrypted files (generated after decryption)
+
+├── demo_files/               # Directory containing demo files for encryption/decryption
+
+├── key.key                   # Encryption key file used during encryption and decryption
+
+├── ransom_note.txt           # Simulated ransom instructions
+
+└── README.md                 # Project README file (this file)
+
 ## Files
 
-- ```encryptor.py```: Main script that encrypts files and generates ransom note.
+- ```encryptor.py```: This script is responsible for encrypting files in a specified directory (demo_files). It generates a unique encryption key, encrypts the files, and saves them with a .txt extension. It also writes a ransom note in each folder containing encrypted files.
 
-- ```decryptor.py```: Script to decrypt the files if the correct key is available.
+- ```decryptor.py```: This script is used to decrypt files that have been encrypted by the encryptor.py. It reads the key from the key.key file, decrypts the .txt files (which were originally encrypted), and restores the original filenames. It also launches a GUI showing a list of decrypted files.
 
-- ```README.md```: This file.
+- ```ransomware_gui.py```: This script contains the graphical user interface (GUI) for the ransomware simulation. It includes a countdown timer that is shown to the user before the attack is initiated. This script manages the window that alerts the user of the encryption process.
 
-- ```key.key```: Generated encryption key.
+- ```decryption_gui.py```: This file is responsible for the GUI displayed after the decryption is complete. It shows the user a list of successfully decrypted files and provides options like "Open Folder" to view the restored files or "Close" to exit the GUI.
+
+- ```persistence.py```: This script simulates the persistence mechanism for the ransomware, ensuring it runs automatically at startup (to mimic the persistence of ransomware on a system). It sets up a cron job to run the ransomware each time the system reboots, simulating a real-world ransomware persistence mechanism.
+
+- ```decryption_log.txt```: This file is created by decryptor.py after successfully decrypting files. It logs all the decrypted file paths for reference. The log helps the user verify which files were decrypted during the recovery process.
 
 - ```ransom_note.txt```: Simulated ransom instructions.
 
