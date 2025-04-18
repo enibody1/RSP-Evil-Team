@@ -50,6 +50,15 @@ RSP-Evil-Team/
 
 └── README.md                 # Project README file (this file)
 
+ransomware_simulator/
+│
+├── encryptor.py            # Script to encrypt files and drop ransom note
+├── decryptor.py            # Script to decrypt files with a key
+├── key.key                 # Generated encryption key
+├── ransom_note.txt         # Template ransom message (used in script)
+├── demo_files/             # Test files that will be encrypted
+└── README.md   
+
 ## Files
 
 - ```encryptor.py```: This script is responsible for encrypting files in a specified directory (demo_files). It generates a unique encryption key, encrypts the files, and saves them with a .txt extension. It also writes a ransom note in each folder containing encrypted files.
