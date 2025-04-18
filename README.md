@@ -25,40 +25,21 @@ This project is for educational purposes only. Do NOT use it on any system witho
 - ```cryptography``` library
 
 ## Project Structure
+```bash
 
 RSP-Evil-Team/
-
 │
-
-├── encryptor.py              # Main script to encrypt files and write ransom notes
-
-├── decryptor.py              # Main script to decrypt files and restore original filenames
-
-├── ransomware_gui.py         # GUI for the ransomware attack (e.g., countdown, warnings)
-
-├── decryption_gui.py         # GUI for showing decryption success and displaying decrypted files
-
-├── persistence.py            # Persistence setup for simulating autostart on system boot
-
-├── decryption_log.txt        # Log of decrypted files (generated after decryption)
-
-├── demo_files/               # Directory containing demo files for encryption/decryption
-
-├── key.key                   # Encryption key file used during encryption and decryption
-
-├── ransom_note.txt           # Simulated ransom instructions
-
-└── README.md                 # Project README file (this file)
-
-ransomware_simulator/
-│
-├── encryptor.py            # Script to encrypt files and drop ransom note
-├── decryptor.py            # Script to decrypt files with a key
+├── encryptor.py            # Main script to encrypt files and write ransom notes
+├── decryptor.py            # Main script to decrypt files and restore original filenames
+├── ransomware_gui.py       # GUI for the ransomware attack (e.g., countdown, warnings)
+├── decryption_gui.py       # GUI for showing decryption success and displaying decrypted files
+├── persistence.py          # Persistence setup for simulating autostart on system boot
+├── decryption_log.txt      # Log of decrypted files (generated after decryption)
 ├── key.key                 # Generated encryption key
 ├── ransom_note.txt         # Template ransom message (used in script)
-├── demo_files/             # Test files that will be encrypted
+├── demo_files/             # Directory containing demo files for encryption/decryption
 └── README.md   
-
+```
 ## Files
 
 - ```encryptor.py```: This script is responsible for encrypting files in a specified directory (demo_files). It generates a unique encryption key, encrypts the files, and saves them with a .txt extension. It also writes a ransom note in each folder containing encrypted files.
