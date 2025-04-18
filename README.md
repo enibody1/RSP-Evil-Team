@@ -35,10 +35,10 @@ RSP-Evil-Team/
 ├── decryption_gui.py       # GUI for showing decryption success and displaying decrypted files
 ├── persistence.py          # Persistence setup for simulating autostart on system boot
 ├── decryption_log.txt      # Log of decrypted files (generated after decryption)
-├── key.key                 # Generated encryption key
+├── key.key                 # Encryption key file used during encryption and decryption
 ├── ransom_note.txt         # Template ransom message (used in script)
 ├── demo_files/             # Directory containing demo files for encryption/decryption
-└── README.md   
+└── README.md               # Project README file (this file)
 ```
 ## Files
 
